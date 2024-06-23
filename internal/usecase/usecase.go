@@ -10,6 +10,7 @@ var (
 	ErrInvalidUserName  = errors.New("invalid user name")
 	ErrEmptyMessage     = errors.New("empty message text")
 	ErrInvalidTimestamp = errors.New("invalid timestamp")
+	ErrMessageNotFound  = errors.New("message not found")
 )
 
 type UserRepository interface {
@@ -20,4 +21,5 @@ type UserRepository interface {
 type MessageRepository interface {
 	SaveMessage(*domain.Message) error
 	GetMessageById(int64) (*domain.Message, error)
+	GetMessages() ([]*domain.Message, error)
 }

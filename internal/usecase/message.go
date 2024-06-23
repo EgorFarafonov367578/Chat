@@ -39,3 +39,7 @@ func (m *Message) RegisterMessage(message *domain.Message) error {
 	}
 	return m.repository.SaveMessage(message)
 }
+
+func (m *Message) GetMessages() ([]*domain.Message, error) {
+	return m.repository.GetMessages()
+}
