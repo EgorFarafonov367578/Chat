@@ -2,7 +2,7 @@ package main
 
 import (
 	"chat/internal/domain"
-	messageRepository "chat/internal/repositories/message/inmemory"
+	mr "chat/internal/repositories/message/inmemory"
 	ur "chat/internal/repositories/user/inmemory"
 	"chat/internal/usecase"
 	"fmt"
@@ -25,7 +25,7 @@ import (
 }*/
 
 func main() {
-	mr := messageRepository.NewMessageRepository()
+	mr := mr.NewMessageRepository()
 	ur := ur.NewUserRepository()
 	messageService := usecase.NewMessage(mr, ur)
 	userService := usecase.NewUser(ur)
