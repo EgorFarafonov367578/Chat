@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+<div id="chat">
+</div>
+<script>
+var xhr = new XMLHttpRequest();
+xhr.open("GET","messages",false);
+xhr.send();
+
+if (xhr.status == 200) {
+    messages = JSON.parse(xhr.responseText);
+    for (i = 0; i < messages.length; i++) {
+        document.getElementById("chat").innerHTML = document.getElementById("chat").innerHTML + "<br/>" + messages[i]["Text"];
+    }
+} else {
+    alert("?2|" + xhr.status);
+}
+</script>
+
+</body>
+</html>
