@@ -12,18 +12,6 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-/*var chatMessages = []domain.Message{
-	{
-		Text: "message1",
-		Time: time.Now()},
-	{
-		Text: "message2",
-		Time: time.Now()},
-	{
-		Text: "message3",
-		Time: time.Now()},
-}*/
-
 func main() {
 	mr := mr.NewMessageRepository()
 	ur := ur.NewUserRepository()

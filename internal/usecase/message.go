@@ -2,7 +2,6 @@ package usecase
 
 import (
 	"chat/internal/domain"
-	"unicode"
 )
 
 type Message struct {
@@ -16,15 +15,6 @@ func NewMessage(repository MessageRepository, userRepository UserRepository) *Me
 
 func (m *Message) GetMessageById(id int64) (*domain.Message, error) {
 	return m.repository.GetMessageById(id)
-}
-
-func stringIsMeaningless(s string) bool {
-	for _, c := range s {
-		if !unicode.IsSpace(c) {
-			return false
-		}
-	}
-	return true
 }
 
 func (m *Message) RegisterMessage(message *domain.Message) error {
