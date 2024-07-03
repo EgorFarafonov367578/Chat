@@ -101,21 +101,19 @@
 </body>
 
 <script>
+    function formatTime(isoString) {
+        const date = new Date(isoString);
+        let hours = date.getHours();
+    
+        // Determine AM/PM
+        const period = hours >= 12 ? 'PM' : 'AM';
 
-function formatTime(isoString) {
-    const date = new Date(isoString);
-    let hours = date.getHours();
-    //hours = (hours + 24) % 24;
+        // Convert to 12-hour format if needed
+        hours = hours % 12;
+        hours = hours === 0 ? 12 : hours;
 
-    // Determine AM/PM
-    const period = hours >= 12 ? 'PM' : 'AM';
-
-    // Convert to 12-hour format if needed
-    hours = hours % 12;
-    hours = hours === 0 ? 12 : hours;
-
-    return `${hours}${period}`;
-}
+        return `${hours}${period}`;
+    }
 
     
     var xhr = new XMLHttpRequest();
@@ -126,15 +124,15 @@ function formatTime(isoString) {
         messages = JSON.parse(xhr.responseText);
         for (i = 0; i < messages.length; i++) {
             document.getElementById("chat-messages").innerHTML = document.getElementById("chat-messages").innerHTML + "<br/>" + 
-`<div class=\"message other\"> \
-    <div class=\"message-content\">  
-        ${messages[i]["Text"]} 
-    <div class=\"message-timestamp\"> ${formatTime (messages[i]["Time"])} </div>
-    </div>\
-</div>`;
+            `<div class=\"message other\"> \
+                <div class=\"message-content\">  
+                    ${messages[i]["Text"]} 
+                    <div class=\"message-timestamp\"> ${formatTime (messages[i]["Time"])} </div>
+                </div>\
+            </div>`;
         }
     } else {
-        alert("?2|" + xhr.status);
+        alert(`Problem accoured while trying to fetch the chats data: ${xhr.status}`);
     }
 </script>
 </html>
